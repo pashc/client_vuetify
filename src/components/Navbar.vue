@@ -1,5 +1,6 @@
 <template>
-  <v-app class="app">
+  <v-container>
+
     <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
@@ -7,17 +8,15 @@
       v-model="drawer"
       enable-resize-watcher
       fixed
-      app
+      app,
       class="nav"
     >
-      <v-list>
-        <p class="nav_title">Categories</p>
 
+      <v-list>
         <v-list-tile
           value="true"
           v-for="(item, i) in items"
           :key="i"
-          active-class="black--text"
         >
 
           <v-list-tile-action>
@@ -27,11 +26,12 @@
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"/>
           </v-list-tile-content>
+
         </v-list-tile>
 
       </v-list>
-
     </v-navigation-drawer>
+
 
     <v-toolbar
       app
@@ -39,79 +39,34 @@
       class="toolbar"
     >
       <v-toolbar-side-icon class="toolbar_icon" @click.stop="drawer = !drawer"/>
+
     </v-toolbar>
 
-    <v-content>
-      <router-view/>
-    </v-content>
-
-    <Footer/>
-
-  </v-app>
+  </v-container>
 </template>
 
 <script>
-  import Footer from './components/Footer'
-
   export default {
-    components: {
-      Footer
-    },
     data() {
       return {
         clipped: false,
         drawer: true,
         fixed: false,
         items: [{
-          icon: 'O',
           title: 'Inspire'
         }, {
-          icon: 'O',
-          title: 'The'
+          title: 'Your'
         }, {
-          icon: 'O',
-          title: 'World'
+          title: 'Live'
         }],
         miniVariant: false,
         right: true
       }
     },
-    name: 'App'
+    name: 'Navbar'
   }
 </script>
 
 <style scoped>
-  .app {
-    background-color: #1a1a1a;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  .toolbar_icon {
-    margin-top: -10px;
-    color: #c4c4c3;
-  }
-
-  .toolbar {
-    background-color: #6c6d69;
-    height: 48px;
-  }
-
-  .nav {
-    background-color: #ebedef;
-    font-family: Menlo, sans-serif;
-  }
-
-  .nav_title {
-    color: #808080;
-    font-weight: normal;
-    font-size: 23px;
-    font-family: Menlo, sans-serif;
-    padding-left: 10px;
-  }
-
 
 </style>
