@@ -356,13 +356,5 @@
     font-family: Menlo, sans-serif;
   }
 
-  .nav_title {
-    color: #808080;
-    font-weight: normal;
-    font-size: 23px;
-    font-family: Menlo, sans-serif;
-    padding-left: 10px;
-  }
-
 
 </style>
