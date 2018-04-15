@@ -11,24 +11,32 @@
       class="nav"
     >
       <v-list>
-        <p class="nav_title">Categories</p>
-
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-          active-class="black--text"
+        <v-list-group
+          v-model="category.active"
+          v-for="category in categories"
+          :key="category.title"
+          :prepend-icon="category.action"
+          no-action
         >
+          <v-list-tile slot="activator">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ category.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"/>
-          </v-list-tile-action>
+          <v-list-tile v-for="article in category.articles" :key="article.title" @click="">
 
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"/>
-          </v-list-tile-content>
-        </v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ article.title }}</v-list-tile-title>
+            </v-list-tile-content>
 
+            <v-list-tile-action>
+              <v-icon>{{ article.action }}</v-icon>
+            </v-list-tile-action>
+
+          </v-list-tile>
+
+        </v-list-group>
       </v-list>
 
     </v-navigation-drawer>
@@ -62,15 +70,258 @@
         clipped: false,
         drawer: true,
         fixed: false,
-        items: [{
-          icon: 'O',
-          title: 'Inspire'
+        categories: [{
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
         }, {
-          icon: 'O',
-          title: 'The'
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
         }, {
-          icon: 'O',
-          title: 'World'
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'Inspire',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'The',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
+        }, {
+          title: 'World',
+          articles: [{
+            title: 'First Article',
+            content: 'First Article Content'
+          }, {
+            title: 'Second Article',
+            content: 'Second Article Content'
+          }, {
+            title: 'Third Article',
+            content: 'Third Article Content'
+          }]
         }],
         miniVariant: false,
         right: true
