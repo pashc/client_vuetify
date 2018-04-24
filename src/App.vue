@@ -18,15 +18,16 @@
           no-action
         >
           <v-list-tile slot="activator">
-            <v-list-tile-content>
+            <v-list-tile-content @click="articles = getArticlesForCategory(category.title)">
               <v-list-tile-title>{{ category.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
           <v-list-tile
-            v-for="article in category.articles"
+            v-if="category.active"
+            v-for="article in articles"
             :key="article.title"
-            @click="content = selectArticle(article.title)">
+            @click="content = article.content">
 
             <v-list-tile-content>
               <v-list-tile-title>{{ article.title }}</v-list-tile-title>
@@ -57,74 +58,48 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import Footer from './components/Footer'
 
   export default {
+    name: 'App',
     components: {
       Footer
     },
-    methods: {
-      selectArticle: function (articleTitle) {
-        return db[0].articles.filter(article => article.title === articleTitle)[0].content
-      },
-      getAllCategories: function () {
-        return db
-      },
-      getFirstArticle: function () {
-        return db[0].articles[0].content
-      }
-    },
-    data () {
+    data() {
       return {
         clipped: false,
         drawer: true,
-        fixed: false,
-        categories: this.getAllCategories(),
-        content: this.getFirstArticle(),
+        categories: [],
+        articles: [],
+        content: "Hello World",
         miniVariant: false,
         right: true
       }
     },
-    name: 'App'
+    created() {
+      this.getAllCategories()
+    },
+    methods: {
+      getAllCategories: function () {
+        axios.get('http://localhost:3000/api/categories')
+          .then(response => {
+            this.categories = response.data
+          })
+      },
+      getArticlesForCategory: function (categoryTitle) {
+        axios.get('http://localhost:3000/api/articles/', {
+            params: {
+              category: categoryTitle
+            }
+          }
+        ).then(response => {
+          this.articles = response.data
+        })
+      }
+    }
   }
 
-  const db = [{
-    title: 'Inspire',
-    articles: [{
-      title: 'First Article',
-      content: 'First Article Content'
-    }, {
-      title: 'Second Article',
-      content: 'Second Article Content'
-    }, {
-      title: 'Third Article',
-      content: 'Third Article Content'
-    }]
-  }, {
-    title: 'The',
-    articles: [{
-      title: 'First Article',
-      content: 'First Article Content'
-    }, {
-      title: 'Second Article',
-      content: 'Second Article Content'
-    }, {
-      title: 'Third Article',
-      content: 'Third Article Content'
-    }]
-  }, {
-    title: 'World',
-    articles: [{
-      title: 'First Article',
-      content: 'First Article Content'
-    }, {
-      title: 'Second Article',
-      content: 'Second Article Content'
-    }, {
-      title: 'Third Article',
-      content: 'Third Article Content'
-    }]
-  }]
 </script>
 
 <style scoped>
