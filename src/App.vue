@@ -65,7 +65,7 @@
     components: {
       Footer
     },
-    data() {
+    data () {
       return {
         clipped: false,
         drawer: true,
