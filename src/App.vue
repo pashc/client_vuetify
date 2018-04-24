@@ -15,7 +15,6 @@
           v-model="category.active"
           v-for="category in categories"
           :key="category.title"
-          :prepend-icon="category.action"
           no-action
         >
           <v-list-tile slot="activator">
@@ -24,15 +23,14 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-list-tile v-for="article in category.articles" :key="article.title" @click="">
+          <v-list-tile
+            v-for="article in category.articles"
+            :key="article.title"
+            @click="content = selectArticle(article.title)">
 
             <v-list-tile-content>
               <v-list-tile-title>{{ article.title }}</v-list-tile-title>
             </v-list-tile-content>
-
-            <v-list-tile-action>
-              <v-icon>{{ article.action }}</v-icon>
-            </v-list-tile-action>
 
           </v-list-tile>
 
@@ -50,7 +48,7 @@
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <router-view :content="content"/>
     </v-content>
 
     <Footer/>
@@ -65,270 +63,68 @@
     components: {
       Footer
     },
+    methods: {
+      selectArticle: function (articleTitle) {
+        return db[0].articles.filter(article => article.title === articleTitle)[0].content
+      },
+      getAllCategories: function () {
+        return db
+      },
+      getFirstArticle: function () {
+        return db[0].articles[0].content
+      }
+    },
     data () {
       return {
         clipped: false,
         drawer: true,
         fixed: false,
-        categories: [{
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'Inspire',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'The',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }, {
-          title: 'World',
-          articles: [{
-            title: 'First Article',
-            content: 'First Article Content'
-          }, {
-            title: 'Second Article',
-            content: 'Second Article Content'
-          }, {
-            title: 'Third Article',
-            content: 'Third Article Content'
-          }]
-        }],
+        categories: this.getAllCategories(),
+        content: this.getFirstArticle(),
         miniVariant: false,
         right: true
       }
     },
     name: 'App'
   }
+
+  const db = [{
+    title: 'Inspire',
+    articles: [{
+      title: 'First Article',
+      content: 'First Article Content'
+    }, {
+      title: 'Second Article',
+      content: 'Second Article Content'
+    }, {
+      title: 'Third Article',
+      content: 'Third Article Content'
+    }]
+  }, {
+    title: 'The',
+    articles: [{
+      title: 'First Article',
+      content: 'First Article Content'
+    }, {
+      title: 'Second Article',
+      content: 'Second Article Content'
+    }, {
+      title: 'Third Article',
+      content: 'Third Article Content'
+    }]
+  }, {
+    title: 'World',
+    articles: [{
+      title: 'First Article',
+      content: 'First Article Content'
+    }, {
+      title: 'Second Article',
+      content: 'Second Article Content'
+    }, {
+      title: 'Third Article',
+      content: 'Third Article Content'
+    }]
+  }]
 </script>
 
 <style scoped>
