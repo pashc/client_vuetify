@@ -18,19 +18,19 @@
           no-action
         >
           <v-list-tile slot="activator">
-            <v-list-tile-content @click="setArticlesForCategory(category.title)">
+            <v-list-tile-content @click="setPostsForCategory(category.title)">
               <v-list-tile-title>{{ category.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
           <v-list-tile
             v-if="category.active"
-            v-for="article in articles"
-            :key="article.title"
-            @click="setContentAsHtml(article.content)">
+            v-for="post in posts"
+            :key="post.title"
+            @click="setContentAsHtml(post.content)">
 
             <v-list-tile-content>
-              <v-list-tile-title>{{ article.title }}</v-list-tile-title>
+              <v-list-tile-title>{{ post.title }}</v-list-tile-title>
             </v-list-tile-content>
 
           </v-list-tile>
@@ -74,7 +74,7 @@
         clipped: false,
         drawer: true,
         categories: [],
-        articles: [],
+        posts: [],
         content: "Hello World",
         miniVariant: false,
         right: true
@@ -90,14 +90,14 @@
             this.categories = response.data
           })
       },
-      setArticlesForCategory: function (categoryTitle) {
-        axios.get('http://localhost:3000/api/articles', {
+      setPostsForCategory: function (categoryTitle) {
+        axios.get('http://localhost:3000/api/posts', {
             params: {
               category: categoryTitle
             }
           }
         ).then(response => {
-          this.articles = response.data
+          this.posts = response.data
         })
       },
       setContentAsHtml: function (mdText) {
