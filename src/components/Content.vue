@@ -26,24 +26,6 @@
 
 <style scoped>
 
-  .container-fluid {
-    background-color: #2d2d2d;
-    -webkit-box-shadow: 9px 8px 11px -4px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 9px 8px 11px -4px rgba(0, 0, 0, 0.3);
-    box-shadow: 9px 8px 11px -4px rgba(0, 0, 0, 0.3);
-    margin-top: 0px;
-    margin-bottom: 20px;
-    max-width: 1400px;
-    padding: 20px;
-  }
-
-  .font {
-    color: #d8d6cf;
-    font-weight: normal;
-    font-size: 18px;
-    font-family: Courier, sans-serif;
-  }
-
   h1 {
     font-size: 24px;
   }
