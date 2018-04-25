@@ -30,7 +30,9 @@
             @click="setContentAsHtml(post.content)">
 
             <v-list-tile-content>
-              <v-list-tile-title>{{ post.title }}</v-list-tile-title>
+              <v-list-tile-title>
+                <router-link to="/" >{{ post.title }}</router-link>
+              </v-list-tile-title>
             </v-list-tile-content>
 
           </v-list-tile>
@@ -101,8 +103,7 @@
         posts: [],
         menus: [
           {title: 'Home', link: '/'},
-          {title: 'Login', link: '/login'},
-          {title: 'Register', link: '/register'}
+          {title: 'Login', link: '/login'}
         ],
         content: 'Hello World',
         miniVariant: false,
