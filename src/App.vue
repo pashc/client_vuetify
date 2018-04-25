@@ -60,10 +60,9 @@
           </v-btn>
 
           <v-list class="menu-color">
-            <v-list-tile v-for="(item, i) in menus" :key="i">
-
+            <v-list-tile >
               <v-list-tile-title>
-                <router-link :to="item.link">{{ item.title }}</router-link>
+                <button>Login</button>
               </v-list-tile-title>
 
             </v-list-tile>
@@ -101,10 +100,6 @@
         drawer: true,
         categories: [],
         posts: [],
-        menus: [
-          {title: 'Home', link: '/'},
-          {title: 'Login', link: '/login'}
-        ],
         content: 'Hello World',
         miniVariant: false,
         right: true
