@@ -8,7 +8,7 @@
       enable-resize-watcher
       fixed
       app
-      class="nav"
+      class="nav menu-color"
     >
       <v-list>
         <v-list-group
@@ -46,6 +46,30 @@
       class="toolbar"
     >
       <v-toolbar-side-icon class="toolbar_icon" @click.stop="drawer = !drawer"/>
+
+      <v-spacer/>
+
+      <v-toolbar-side-icon class="toolbar_icon">
+
+        <v-menu bottom left>
+
+          <v-btn icon slot="activator" dark>
+            <v-icon>more_vert</v-icon>
+          </v-btn>
+
+          <v-list class="menu-color">
+            <v-list-tile v-for="(item, i) in menus" :key="i">
+
+              <v-list-tile-title>
+                <router-link :to="item.link">{{ item.title }}</router-link>
+              </v-list-tile-title>
+
+            </v-list-tile>
+          </v-list>
+
+        </v-menu>
+
+      </v-toolbar-side-icon>
     </v-toolbar>
 
     <v-content>
@@ -75,7 +99,12 @@
         drawer: true,
         categories: [],
         posts: [],
-        content: "Hello World",
+        menus: [
+          {title: 'Home', link: '/'},
+          {title: 'Login', link: '/login'},
+          {title: 'Register', link: '/register'}
+        ],
+        content: 'Hello World',
         miniVariant: false,
         right: true
       }
@@ -109,6 +138,13 @@
 </script>
 
 <style scoped>
+  a {
+    font-family: Menlo, sans-serif;
+    text-decoration: none;
+    cursor: auto;
+    color: #1e1f1f;
+  }
+
   .app {
     background-color: #1a1a1a;
     padding: 20px;
@@ -116,6 +152,14 @@
     height: 100%;
     top: 0;
     left: 0;
+  }
+
+  .menu-color {
+    background-color: #ebedef;
+  }
+
+  .nav {
+    font-family: Menlo, sans-serif;
   }
 
   .toolbar_icon {
@@ -126,11 +170,6 @@
   .toolbar {
     background-color: #6c6d69;
     height: 48px;
-  }
-
-  .nav {
-    background-color: #ebedef;
-    font-family: Menlo, sans-serif;
   }
 
 
