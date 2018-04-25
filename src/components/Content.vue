@@ -4,7 +4,9 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
         <v-content style="padding: 10px 32px;">
-          {{ content }}
+
+          <v-container v-html="content"/>
+
         </v-content>
       </v-layout>
     </v-slide-y-transition>

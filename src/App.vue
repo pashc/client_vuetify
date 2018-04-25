@@ -18,7 +18,7 @@
           no-action
         >
           <v-list-tile slot="activator">
-            <v-list-tile-content @click="articles = getArticlesForCategory(category.title)">
+            <v-list-tile-content @click="setArticlesForCategory(category.title)">
               <v-list-tile-title>{{ category.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
@@ -27,7 +27,7 @@
             v-if="category.active"
             v-for="article in articles"
             :key="article.title"
-            @click="content = article.content">
+            @click="setContentAsHtml(article.content)">
 
             <v-list-tile-content>
               <v-list-tile-title>{{ article.title }}</v-list-tile-title>
@@ -60,6 +60,9 @@
 <script>
   import axios from 'axios'
   import Footer from './components/Footer'
+  import showdown from 'showdown'
+
+  const md2html = new showdown.Converter();
 
   export default {
     name: 'App',
@@ -87,8 +90,8 @@
             this.categories = response.data
           })
       },
-      getArticlesForCategory: function (categoryTitle) {
-        axios.get('http://localhost:3000/api/articles/', {
+      setArticlesForCategory: function (categoryTitle) {
+        axios.get('http://localhost:3000/api/articles', {
             params: {
               category: categoryTitle
             }
@@ -96,6 +99,9 @@
         ).then(response => {
           this.articles = response.data
         })
+      },
+      setContentAsHtml: function (mdText) {
+        this.content = md2html.makeHtml(mdText)
       }
     }
   }
