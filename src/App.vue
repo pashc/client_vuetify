@@ -31,7 +31,7 @@
 
             <v-list-tile-content>
               <v-list-tile-title>
-                <router-link to="/" >{{ post.title }}</router-link>
+                <router-link to="/">{{ post.title }}</router-link>
               </v-list-tile-title>
             </v-list-tile-content>
 
@@ -60,9 +60,9 @@
           </v-btn>
 
           <v-list class="menu-color">
-            <v-list-tile >
+            <v-list-tile>
               <v-list-tile-title>
-                <button>Login</button>
+                <button @click.stop="show()">Login</button>
               </v-list-tile-title>
 
             </v-list-tile>
@@ -77,6 +77,7 @@
       <router-view :content="content"/>
     </v-content>
 
+    <LoginModal/>
     <Footer/>
 
   </v-app>
@@ -85,6 +86,7 @@
 <script>
   import axios from 'axios'
   import Footer from './components/Footer'
+  import LoginModal from './components/LoginModal'
   import showdown from 'showdown'
 
   const md2html = new showdown.Converter();
@@ -92,7 +94,8 @@
   export default {
     name: 'App',
     components: {
-      Footer
+      Footer,
+      LoginModal
     },
     data() {
       return {
@@ -127,6 +130,12 @@
       },
       setContentAsHtml: function (mdText) {
         this.content = md2html.makeHtml(mdText)
+      },
+      show: function () {
+        this.$modal.show('login-modal')
+      },
+      hide: function () {
+        this.$modal.hide('login-modal')
       }
     }
   }
@@ -175,6 +184,7 @@
   .nav {
     font-family: Menlo, sans-serif;
   }
+
   .toolbar_icon {
     margin-top: -10px;
     color: #c4c4c3;
@@ -185,5 +195,24 @@
     height: 48px;
   }
 
+  .v--modal-overlay {
+    position: fixed;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 1;
+  }
+
+  v--modal-box v--modal {
+    background-color: black;
+    text-align: left;
+    border-radius: 3px;
+    box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+    padding: 0;
+  }
 
 </style>
