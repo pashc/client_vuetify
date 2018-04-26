@@ -8,7 +8,7 @@
       enable-resize-watcher
       fixed
       app
-      class="nav menu-color"
+      class="nav"
     >
       <v-list>
         <v-list-group
@@ -31,7 +31,7 @@
 
             <v-list-tile-content>
               <v-list-tile-title>
-                <router-link to="/" >{{ post.title }}</router-link>
+                <router-link to="/">{{ post.title }}</router-link>
               </v-list-tile-title>
             </v-list-tile-content>
 
@@ -48,29 +48,6 @@
       class="toolbar"
     >
       <v-toolbar-side-icon class="toolbar_icon" @click.stop="drawer = !drawer"/>
-
-      <v-spacer/>
-
-      <v-toolbar-side-icon class="toolbar_icon">
-
-        <v-menu bottom left>
-
-          <v-btn icon slot="activator" dark>
-            <v-icon>more_vert</v-icon>
-          </v-btn>
-
-          <v-list class="menu-color">
-            <v-list-tile >
-              <v-list-tile-title>
-                <button>Login</button>
-              </v-list-tile-title>
-
-            </v-list-tile>
-          </v-list>
-
-        </v-menu>
-
-      </v-toolbar-side-icon>
     </v-toolbar>
 
     <v-content>
@@ -168,13 +145,11 @@
     font-family: Courier, sans-serif;
   }
 
-  .menu-color {
+  .nav {
+    font-family: Menlo, sans-serif;
     background-color: #ebedef;
   }
 
-  .nav {
-    font-family: Menlo, sans-serif;
-  }
   .toolbar_icon {
     margin-top: -10px;
     color: #c4c4c3;
