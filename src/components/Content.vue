@@ -98,11 +98,11 @@
 
   p img {
     border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 15px;
+    border-radius: 2px;
+    padding: 5px;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 90%;
     max-width: 100%;
     display: block;
     height: auto;
