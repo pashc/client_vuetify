@@ -10,6 +10,9 @@
       app
       class="nav"
     >
+
+      <span>Categories</span>
+
       <v-list>
         <v-list-group
           v-model="category.active"
@@ -88,13 +91,17 @@
         drawer: true,
         categories: [],
         posts: [],
-        content: 'Hello World',
+        content: '',
         miniVariant: false,
         right: true
       }
     },
     created () {
       this.getAllCategories()
+      this.setContentAsHtml(
+        '# Paul Werner\'s Blog\n' +
+        'Hello World and welcome to my collection of personal articles about things I\'ve learned on my journey and ' +
+        'the conclusions I\'ve made out of them. All articles are categorized and will be extend by time. Feel free to explore.')
     },
     methods: {
       getAllCategories: function () {
@@ -167,5 +174,10 @@
   .toolbar {
     background-color: #6c6d69;
     height: 48px;
+  }
+
+  span {
+    margin: 10px;
+    font-size: 18px;
   }
 </style>
