@@ -64,14 +64,25 @@
   import Footer from './components/Footer'
   import showdown from 'showdown'
 
-  const md2html = new showdown.Converter();
+  const md2html = new showdown.Converter()
+
+  md2html.setOption('tables', true)
+  md2html.setOption('strikethrough', true)
+  md2html.setOption('smartIndentationFix', true)
+  md2html.setOption('simpleLineBreaks', true)
+  md2html.setOption('simplifiedAutoLink', true)
+  md2html.setOption('openLinksInNewWindow', true)
+  md2html.setOption('requireSpaceBeforeHeadingText', true)
+  md2html.setOption('backslashEscapesHTMLTags', true)
+  md2html.setOption('splitAdjacentBlockquotes', true)
+  md2html.setOption('disableForced4SpacesIndentedSublists', true)
 
   export default {
     name: 'App',
     components: {
       Footer
     },
-    data() {
+    data () {
       return {
         clipped: false,
         drawer: true,
@@ -82,7 +93,7 @@
         right: true
       }
     },
-    created() {
+    created () {
       this.getAllCategories()
     },
     methods: {
@@ -94,11 +105,10 @@
       },
       setPostsForCategory: function (categoryTitle) {
         axios.get('http://localhost:3000/api/posts', {
-            params: {
-              category: categoryTitle
-            }
+          params: {
+            category: categoryTitle
           }
-        ).then(response => {
+        }).then(response => {
           this.posts = response.data
         })
       },
@@ -107,7 +117,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -134,14 +143,14 @@
     box-shadow: 9px 8px 11px -4px rgba(0, 0, 0, 0.3);
     margin-top: 0px;
     margin-bottom: 20px;
-    max-width: 1400px;
+    max-width: 1000px;
     padding: 20px;
   }
 
   .font {
     color: #d8d6cf;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     font-family: Courier, sans-serif;
   }
 
@@ -159,6 +168,4 @@
     background-color: #6c6d69;
     height: 48px;
   }
-
-
 </style>
