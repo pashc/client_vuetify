@@ -29,6 +29,8 @@
   h1 {
     font-size: 32px;
     text-decoration: underline;
+    text-align: center;
+    padding-bottom: 15px;
   }
 
   h2 {
