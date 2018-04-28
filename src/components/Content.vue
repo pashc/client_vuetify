@@ -33,7 +33,6 @@
 
   h2 {
     font-size: 24px;
-    text-decoration: underline;
   }
 
   h3 {
