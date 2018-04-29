@@ -11,7 +11,7 @@
       class="nav"
     >
 
-      <span>Categories</span>
+      <span class="nav-title">Categories</span>
 
       <v-list>
         <v-list-group
@@ -101,7 +101,7 @@
       this.setContentAsHtml(
         '# Paul Werner\'s Blog\n' +
         'Hello World and welcome to my collection of personal articles about things I\'ve learned on my journey and ' +
-        'the conclusions I\'ve made out of them. All articles are categorized and will be extend by time. Feel free to explore.')
+        'the conclusions I\'ve made out of them. All articles are categorized and will be extended by time. Feel free to explore.')
     },
     methods: {
       getAllCategories: function () {
@@ -176,8 +176,14 @@
     height: 48px;
   }
 
-  span {
-    margin: 10px;
+  .nav-title {
+    margin-left: 15px;
+    margin-top: 1em;
     font-size: 18px;
+    line-height:20px;
+    display: inline-block;
+    vertical-align: middle;
+    horiz-align: right;
+    text-underline: #d8d6cf;
   }
 </style>
