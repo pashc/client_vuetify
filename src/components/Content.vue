@@ -110,4 +110,9 @@
     width: auto\9; /* ie8 */
   }
 
+  .list__group__items--no-action w {
+    padding-left: 35px;
+  }
+
+
 </style>
