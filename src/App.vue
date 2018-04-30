@@ -63,7 +63,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import BlogService from './services/BlogService'
   import Footer from './components/Footer'
   import showdown from 'showdown'
 
@@ -97,29 +97,22 @@
       }
     },
     created () {
-      this.getAllCategories()
+      this.setAllCategories()
       this.setContentAsHtml(
         '# Paul Werner\'s Blog\n' +
         'Hello World and welcome to my collection of personal articles about things I\'ve learned on my journey and ' +
         'the conclusions I\'ve made out of them. All articles are categorized and will be extended by time. Feel free to explore.')
     },
     methods: {
-      getAllCategories: function () {
-        axios.get('http://localhost:3000/api/categories')
-          .then(response => {
-            this.categories = response.data
-          })
+      async setAllCategories() {
+        const response = await BlogService.getAllCategories()
+        this.categories = response.data
       },
-      setPostsForCategory: function (categoryTitle) {
-        axios.get('http://localhost:3000/api/posts', {
-          params: {
-            category: categoryTitle
-          }
-        }).then(response => {
-          this.posts = response.data
-        })
+      async setPostsForCategory(category) {
+        const response = await BlogService.getPostsForCategory(category)
+        this.posts = response.data
       },
-      setContentAsHtml: function (mdText) {
+      setContentAsHtml(mdText) {
         this.content = md2html.makeHtml(mdText)
       }
     }
@@ -180,7 +173,7 @@
     margin-left: 15px;
     margin-top: 1em;
     font-size: 18px;
-    line-height:20px;
+    line-height: 20px;
     display: inline-block;
     vertical-align: middle;
     horiz-align: right;
