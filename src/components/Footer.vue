@@ -1,6 +1,6 @@
 <template>
 
-  <v-footer class="footer" :fixed="fixed" app>
+  <v-footer class="footer" app>
     <img class="img_size" src="@/assets/cc.png" alt="CC"> <span>2018</span>
   </v-footer>
 
@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'footer'
+    name: 'Footer'
   }
 </script>
 
